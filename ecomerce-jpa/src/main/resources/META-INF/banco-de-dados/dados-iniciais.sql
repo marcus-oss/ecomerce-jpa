@@ -1,0 +1,1 @@
+insert into Produto (id,nome,preco) values (1,"Kindle", 600.0);
