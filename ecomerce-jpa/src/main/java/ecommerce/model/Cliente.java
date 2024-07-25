@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+ @Table(name = "cliente")   
 public class Cliente {
 
     @EqualsAndHashCode.Include
