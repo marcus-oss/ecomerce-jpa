@@ -17,6 +17,7 @@ public class Cliente {
     @Id
     private Integer id;
 
+    @Enumerated(EnumType.STRING)
     private String nome;
 
 }
