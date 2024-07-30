@@ -11,14 +11,13 @@ public class OperacaoComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void inserir_o_Primeiro_Objeto_com_Merge() {
-        Produto produto = new Produto();
+       Produto produto = new Produto();
 
-        produto.setId(4);
         produto.setNome("Microfone video Maker");
         produto.setPreco(new BigDecimal(9000));
 
         entityManager.getTransaction().begin();
-        entityManager.merge(produto);
+        entityManager.persist(produto);
         entityManager.getTransaction().commit();
 
 
@@ -33,7 +32,6 @@ public class OperacaoComTransacaoTest extends EntityManagerTest {
     public void inserir_o_Primeiro_Objeto_com_Persist() {
         Produto produto = new Produto();
 
-        produto.setId(5);
         produto.setNome("Nitro 5 com amd");
         produto.setPreco(new BigDecimal(12000));
 
@@ -52,9 +50,8 @@ public class OperacaoComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void inserir_o_Primeiro_Objeto() {
-        Produto produto = new Produto();
+         Produto produto = new Produto();
 
-        produto.setId(2);
         produto.setNome("Camera");
         produto.setPreco(new BigDecimal(6000));
 
@@ -86,9 +83,8 @@ public class OperacaoComTransacaoTest extends EntityManagerTest {
     @Test
 
     public void remover_Objeto() {
-        Produto produto = entityManager.find(Produto.class, 3);
+       Produto produto = entityManager.find(Produto.class, 3);
 
-        produto.setId(3);
 
         entityManager.getTransaction().begin();
         entityManager.remove(produto);
@@ -101,14 +97,14 @@ public class OperacaoComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void atualizar_Objeto() {
-        Produto produto = new Produto();
+    Produto produto = new Produto();
 
-        produto.setId(1);
+
         produto.setNome("Kindle new");
         produto.setPreco(new BigDecimal(400));
 
         entityManager.getTransaction().begin();
-        entityManager.merge(produto);
+        entityManager.persist(produto);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
@@ -116,7 +112,8 @@ public class OperacaoComTransacaoTest extends EntityManagerTest {
         Produto produtoverificado = entityManager.find(Produto.class, produto.getId());
 
         Assertions.assertNotNull(produtoverificado);
-        Assertions.assertEquals("Kindle new", produtoverificado.getNome());
+        Assertions.assertEquals("Kindle new", produtoverificado.getNome());  
+    
     }
 
     @Test
