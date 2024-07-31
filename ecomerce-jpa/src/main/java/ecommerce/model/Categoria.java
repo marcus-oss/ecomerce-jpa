@@ -26,5 +26,8 @@ public class Categoria {
     @Column(name = "categoria_pai_id")
     private Integer categoriaPaiId;
 
+    
+    @OneToMany(mappedBy = "categoriaPai")
+    private List<Categoria> categorias;
 
 }
