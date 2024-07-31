@@ -21,6 +21,11 @@ public class ItemPedido {
     @Id
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name = "pedido")
+    private Pedido pedido;
+
+    
     @Column(name = "pedido_id")
     private Integer pedidoId;
 
