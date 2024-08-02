@@ -19,18 +19,23 @@ public class ItemPedido {
 
     @EqualsAndHashCode.Include
     @Id
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido")
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "produto")
+    private Produto produto;
+
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
-
-    @Column(name = "produto_id")
-    private Integer produtoId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "produto_id")
+    private Produto produtoId;
 
     @Column(name = "preco_produto")
     private BigDecimal precoProduto;
