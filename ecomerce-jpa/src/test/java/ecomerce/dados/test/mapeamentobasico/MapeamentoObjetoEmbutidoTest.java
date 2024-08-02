@@ -14,6 +14,8 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
 
     @Test
     public void analisar_Mapeamento_Em_Butido() {
+         Cliente cliente = entityManager.find(Cliente.class, 1);
+
         EnderecoEntregaPedido endereco = new EnderecoEntregaPedido();
         endereco.setCep("0009-90000");
         endereco.setLogradouro("Rua teste 200");
@@ -28,6 +30,7 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
         pedido.setStatus(StatusPedido.AGUARDANDO);
         pedido.setTotal(new BigDecimal(2000));
         pedido.setEntregaPedido(endereco);
+        pedido.setCliente(cliente);
 
         entityManager.getTransaction().begin();
         entityManager.persist(pedido);
