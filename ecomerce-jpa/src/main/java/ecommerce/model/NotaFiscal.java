@@ -19,11 +19,14 @@ import java.util.Date;
 public class NotaFiscal {
 
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
 
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
+
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 
     private String xml;
 
