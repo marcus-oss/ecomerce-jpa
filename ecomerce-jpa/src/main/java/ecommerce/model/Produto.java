@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EntityListeners({GenericoListener.class})
 @Entity
 @Table(name = "produto")
 public class Produto {
