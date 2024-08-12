@@ -20,15 +20,18 @@ public class ItemPedido {
     @EqualsAndHashCode.Include
     @Id
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
+    @EmbeddedId
+    private ItemPedidoId id;
 
 
+    @MapsId("produtoId")
     @ManyToOne(optional = false)
-    @JoinColumn(name = "produto")
+    @JoinColumn(name = "produto_id")
     private Produto produto;
 
 
+    @MapsId("pedidoId")
     @ManyToOne(optional = false)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
