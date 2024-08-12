@@ -19,15 +19,17 @@ import java.util.Date;
 public class NotaFiscal {
 
     @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pedido_id")
     @Id
     private Integer id;
 
 
-    @OneToOne
-    @JoinTable(name = "pedido_nota_fiscal", joinColumns = @JoinColumn(name = "nota_fiscal_id", unique = true),
-            inverseJoinColumns = @JoinColumn(name = "pedido_id", unique = true))
-    private Pedido pedido;
+    @MapsId
+    @OneToOne(optional = false)
+    @JoinColumn(name = "pedido_id")
+//    @JoinTable(name = "pedido_nota_fiscal", joinColumns = @JoinColumn(name = "nota_fiscal_id", unique = true),
+//            inverseJoinColumns = @JoinColumn(name = "pedido_id",  unique = true))
+   private Pedido pedido;
 
     private String xml;
 
