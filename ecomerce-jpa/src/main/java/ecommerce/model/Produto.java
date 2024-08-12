@@ -25,6 +25,12 @@ public class Produto {
 
     private BigDecimal preco;
 
+    @Column(name = "data_criacao", updatable = false)
+    private LocalDateTime dataCriacao;
+
+    @Column(name = "data_ultima_atualizacao", insertable = false)
+    private LocalDateTime dataUltimaAtualizacao;
+
     @ManyToMany
     @JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private List<Categoria> categorias;
