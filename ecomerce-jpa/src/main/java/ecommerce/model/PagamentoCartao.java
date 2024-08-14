@@ -20,11 +20,13 @@ public class PagamentoCartao {
     @EqualsAndHashCode.Include
     @Id
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
+    @EmbeddedId
+    private PagamentoCartaoId id;
 
 
-  
+
+    @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
