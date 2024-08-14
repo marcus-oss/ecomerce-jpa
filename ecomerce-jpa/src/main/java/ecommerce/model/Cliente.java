@@ -21,8 +21,21 @@ public class Cliente {
 
     private String nome;
 
+    @Transient
+    private String primeironome;
    
     @Enumerated(EnumType.STRING)
     private SexoCliente sexo;
+
+  @PostLoad
+    public void configurarPrimeiroNome() {
+
+        if (nome != null && !nome.isBlank()) {
+            int index = nome.indexOf(" ");
+            if (index > -1) {
+                primeironome = nome.substring(0, index);
+
+            }
+        }
 
 }
