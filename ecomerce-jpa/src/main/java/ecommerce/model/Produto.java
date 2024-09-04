@@ -18,18 +18,25 @@ public class Produto {
 
     @EqualsAndHashCode.Include
     @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nome;
-
-    private BigDecimal preco;
 
     @Column(name = "data_criacao", updatable = false)
     private LocalDateTime dataCriacao;
 
     @Column(name = "data_ultima_atualizacao", insertable = false)
     private LocalDateTime dataUltimaAtualizacao;
+
+
+    private String nome;
+
+    private BigDecimal preco;
+
+    @Lob
+    @Column(length = 1000)
+    private byte[] foto;
 
     @ManyToMany
     @JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
@@ -42,5 +49,9 @@ public class Produto {
     @CollectionTable(name = "produto_tag", joinColumns = @JoinColumn(name = "produto_id"))
     @Column(name = "tag")
     private List<String> tags;
+
+    @ElementCollection
+    @CollectionTable(name = "produto_atributo", joinColumns = @JoinColumn(name = "produto_id"))
+    private List<Atributo> atributos;
 }
 
