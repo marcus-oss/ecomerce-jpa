@@ -14,7 +14,8 @@ import java.util.Map;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @SecondaryTable(name = "cliente_detalhe", pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"))
-@Table(name = "cliente")
+@Table(name = "cliente", uniqueConstraints = {@UniqueConstraint(name = "unq_cpf", columnNames = {"cpf"})},
+        indexes = {@Index(name = "idx_nome", columnList = "nome")})
 public class Cliente {
 
     @EqualsAndHashCode.Include
