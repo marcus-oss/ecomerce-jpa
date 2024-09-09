@@ -13,7 +13,8 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @EntityListeners({GenericoListener.class})
 @Entity
-@Table(name = "produto")
+@Table(name = "produto", uniqueConstraints = {@UniqueConstraint(name = "unq_nome", columnNames = {"nome"})},
+        indexes = {@Index(name = "idx_nome", columnList = "nome")})
 public class Produto {
 
     @EqualsAndHashCode.Include
