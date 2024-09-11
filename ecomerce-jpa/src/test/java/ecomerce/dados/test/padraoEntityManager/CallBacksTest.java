@@ -15,9 +15,10 @@ public class CallBacksTest extends EntityManagerTest {
         Cliente cliente = entityManager.find(Cliente.class, 1);
 
         Pedido pedido = new Pedido();
+        pedido.setData_Ultimo_Pedido(LocalDateTime.now());
         pedido.setCliente(cliente);
         pedido.setStatus(StatusPedido.AGUARDANDO);
-
+        pedido.setTotal(BigDecimal.TEN);
 
         entityManager.getTransaction().begin();
 
