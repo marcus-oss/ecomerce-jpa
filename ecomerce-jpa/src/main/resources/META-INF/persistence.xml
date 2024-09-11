@@ -15,6 +15,23 @@
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="jakarta.persistence.sql-load-script-source" value="META-INF/banco-de-dados/dados-iniciais.sql"/>
 
+            
+            <property name="jakarta.persistence.schema-generation.create-source"
+                      value="metadata-then-script"/>
+            <property name="jakarta.persistence.schema-generation.drop-source"
+                      value="metadata-then-script"/>
+
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.sql-load-script-source"
+                      value="META-INF/banco-de-dados/dados-iniciais.sql"/>
+
+
+            <property name="jakarta.persistence.schema-generation.create-script-source"
+                      value="META-INF/banco-de-dados/script-criacao.sql"/>
+            <property name="jakarta.persistence.schema-generation.drop-script-source"
+                      value="META-INF/banco-de-dados/script-remocao.sql"/>
+
+
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 
             <property name="hibernate.show_sql" value="true" />
