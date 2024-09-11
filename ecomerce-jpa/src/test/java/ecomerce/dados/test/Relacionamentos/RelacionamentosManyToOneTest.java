@@ -17,6 +17,7 @@ public class RelacionamentosManyToOneTest extends EntityManagerTest {
 
         Pedido pedido = new Pedido();
         pedido.setStatus(StatusPedido.AGUARDANDO);
+         pedido.setDataConclusaoPedido(LocalDateTime.now());
         pedido.setDataPedido(LocalDateTime.now());
         pedido.setTotal(BigDecimal.TEN);
 
