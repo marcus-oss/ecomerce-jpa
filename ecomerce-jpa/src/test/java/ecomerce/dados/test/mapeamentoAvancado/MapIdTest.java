@@ -37,6 +37,7 @@ public class MapIdTest extends EntityManagerTest {
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setData_Ultimo_Pedido(LocalDateTime.now());
+        pedido.setData_Ultimo_Pedido(LocalDateTime.now());
         pedido.setStatus(StatusPedido.AGUARDANDO);
         pedido.setTotal(produto.getPreco());
 
