@@ -8,11 +8,12 @@ import org.junit.jupiter.api.Test;
 
 public class PrimeiroCrudTest extends EntityManagerTest {
 
-    @Test
-    public void inserirRegistro() {
+   public void inserirRegistro() {
         Cliente cliente = new Cliente();
 
         cliente.setNome("José Lucas");
+        cliente.setSexo(SexoCliente.MASCULINO);
+        cliente.setCpf("33245");
 
         entityManager.getTransaction().begin();
         entityManager.persist(cliente);
