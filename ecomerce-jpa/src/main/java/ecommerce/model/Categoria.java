@@ -21,7 +21,8 @@ public class Categoria {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+        
+ @Column(length = 100, nullable = false)
     private String nome;
 
     @Column(name = "categoria_pai_id")
