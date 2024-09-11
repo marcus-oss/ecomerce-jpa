@@ -30,9 +30,10 @@ public class Produto {
     @Column(name = "data_ultima_atualizacao", insertable = false)
     private LocalDateTime dataUltimaAtualizacao;
 
-
+ @Column(length = 100, nullable = false)
     private String nome;
 
+ @Column(precision = 19, scale = 2)
     private BigDecimal preco;
 
     @Lob
