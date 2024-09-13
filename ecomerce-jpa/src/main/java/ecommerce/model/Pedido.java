@@ -63,10 +63,12 @@ public class Pedido {
     }
 
 
-    public void calcularTotal() {
+  public void calcularTotal() {
         if (itens != null) {
-            Total = itens.stream().map(ItemPedido::getPrecoProduto)
+            Total = itens.stream().map(i -> new BigDecimal(i.getQuantidade()).multiply(i.getPrecoProduto()))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
+        } else {
+            Total = BigDecimal.ZERO;
         }
     }
 
