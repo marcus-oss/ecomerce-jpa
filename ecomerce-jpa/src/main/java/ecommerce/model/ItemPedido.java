@@ -32,7 +32,7 @@ public class ItemPedido {
 
 
     @MapsId("pedidoId")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.REMOVE)
       @JoinColumn(name = "pedido_id", nullable = false, foreignKey = @ForeignKey(name = "fk_item_pedido"))
     private Pedido pedido;
 
