@@ -21,3 +21,5 @@ insert  into categoria(id,nome) values (1,'Eletrodomesticos');
 insert into categoria (id, nome) values (2, 'Livros');
 
 insert  into produto_categoria(produto_id, categoria_id) values (1,2)
+
+insert into nota_fiscal (pedido_id, xml, data_emissao) values (2,'<xml />', sysdate());
