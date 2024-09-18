@@ -36,6 +36,7 @@ public class NotaFiscal {
     @Column(length = 1000)
     private byte[] xml;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_emissao")
     private Date dataEmissao;
 
