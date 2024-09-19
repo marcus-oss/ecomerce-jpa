@@ -79,4 +79,16 @@ public class BasicoJPQLTest extends EntityManagerTest {
         Assertions.assertFalse(produtoDTOList.isEmpty());
 
     }
+     
+    @Test
+    public void ordernar_Resultados() {
+        String jqpl = "select  c from Cliente  c order  by c.id desc ";
+
+        TypedQuery<Cliente> typedQuery = entityManager.createQuery(jqpl, Cliente.class);
+
+        List<Cliente> clienteList = typedQuery.getResultList();
+        Assertions.assertFalse(clienteList.isEmpty());
+
+
+    }
 }
