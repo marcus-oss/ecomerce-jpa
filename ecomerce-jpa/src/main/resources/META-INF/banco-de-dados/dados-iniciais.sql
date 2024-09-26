@@ -23,6 +23,11 @@ insert into item_pedido (pedido_id, produto_id, preco_produto, quantidade) value
 
 
 insert into pagamento (pedido_id, status, tipo_pagamento, numero_cartao, codigo_barras) values (2, 'PROCESSANDO', 'cartao', '123', null);
+insert into pagamento (pedido_id, status, tipo_pagamento, numero_cartao, codigo_barras) values (3, 'RECEBIDO', 'cartao', '0123', null);
+insert into pagamento (pedido_id, status, tipo_pagamento, numero_cartao, codigo_barras) values (4, 'PROCESSANDO', 'cartao', '4567', null);
+insert into pagamento (pedido_id, status, tipo_pagamento, numero_cartao, codigo_barras) values (5, 'RECEBIDO', 'boleto', null, '8910');
+insert into pagamento (pedido_id, status, tipo_pagamento, numero_cartao, codigo_barras) values (6, 'PROCESSANDO', 'cartao', '1112', null);
+
 
 insert  into categoria(nome) values ('Eletrodomesticos');
 insert into categoria (nome) values ('Livros');
