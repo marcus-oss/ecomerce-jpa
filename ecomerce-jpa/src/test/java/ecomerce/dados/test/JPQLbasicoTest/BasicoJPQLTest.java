@@ -91,4 +91,18 @@ public class BasicoJPQLTest extends EntityManagerTest {
 
 
     }
+    
+    @Test
+    public void usar_Distinct_() {
+        String jpql = "select distinct p from Pedido p " +
+                " join p.itens i join i.produto pro " +
+                " where pro.id in (1, 2, 3, 4) ";
+
+        TypedQuery<Pedido> typedQuery = entityManager.createQuery(jpql, Pedido.class);
+
+        List<Pedido> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        System.out.println(lista.size());
+    }
 }
