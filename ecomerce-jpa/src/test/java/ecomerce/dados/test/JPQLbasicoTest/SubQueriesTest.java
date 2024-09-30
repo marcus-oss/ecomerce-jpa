@@ -52,4 +52,72 @@ public class SubQueriesTest extends EntityManagerTest {
         Assertions.assertFalse(listaObjects.isEmpty());
         listaObjects.forEach(obj -> System.out.println("ID: " + obj.getId()));
     }
+
+       @Test
+    public void pesquisar_ComIN_Exercicio() {
+        String jpql = "select p from Pedido p where p.id in " +
+                " (select p2.id from ItemPedido i2 " +
+                "      join i2.pedido p2 join i2.produto pro2 join pro2.categorias c2 where c2.id = 2)";
+
+        TypedQuery<Pedido> typedQuery = entityManager.createQuery(jpql, Pedido.class);
+
+        List<Pedido> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        lista.forEach(obj -> System.out.println("ID: " + obj.getId()));
+    }
+
+    @Test
+    public void perquisar_Com_Subquery_Exercicio() {
+        String jpql = "select c from Cliente c where " +
+                " (select count(cliente) from Pedido where cliente = c) >= 2";
+
+        TypedQuery<Cliente> typedQuery = entityManager.createQuery(jpql, Cliente.class);
+
+        List<Cliente> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        lista.forEach(obj -> System.out.println("ID: " + obj.getId()));
+    }
+
+
+    @Test
+    public void perquisar_Com_Exists_Exercicio() {
+        String jpql = "select p from Produto p " +
+                " where exists " +
+                " (select 1 from ItemPedido where produto = p and precoProduto <> p.preco)";
+
+        TypedQuery<Produto> typedQuery = entityManager.createQuery(jpql, Produto.class);
+
+        List<Produto> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        lista.forEach(obj -> System.out.println("ID: " + obj.getId()));
+    }
+
+    @Test
+    public void perquisar_Com_All() {
+        String jpql = "select p from Produto p where " +
+                "p.preco > ALL  (select precoProduto from ItemPedido where Produto = p)";
+
+        TypedQuery<Produto> typedQuery = entityManager.createQuery(jpql, Produto.class);
+
+        List<Produto> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        lista.forEach(obj -> System.out.println("ID: " + obj.getId()));
+    }
+
+    @Test
+    public void perquisar_Com_Any() {
+        String jpql = "select p from Produto p  where p.preco <> ANY (select precoProduto from" +
+                " ItemPedido where produto = p)";
+
+        TypedQuery<Produto> typedQuery = entityManager.createQuery(jpql, Produto.class);
+
+        List<Produto> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        lista.forEach(obj -> System.out.println("ID: " + obj.getId()));
+    }
 }
