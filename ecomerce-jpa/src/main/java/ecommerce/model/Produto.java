@@ -13,6 +13,11 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @EntityListeners({GenericoListener.class})
 @Entity
+ @NamedQueries({@NamedQuery(name = "Produto.listar", query = "select p from Produto p"),
+
+        @NamedQuery(name = "Produto.listarPorCategoria", query = "select p from Produto p where " +
+                "exists (select 1 from Categoria c2 join c2.produtos p2 where p2 = p and c2.id = :categoria)")
+})       
 @Table(name = "produto", uniqueConstraints = {@UniqueConstraint(name = "unq_nome", columnNames = {"nome"})},
         indexes = {@Index(name = "idx_nome", columnList = "nome")})
 public class Produto {
