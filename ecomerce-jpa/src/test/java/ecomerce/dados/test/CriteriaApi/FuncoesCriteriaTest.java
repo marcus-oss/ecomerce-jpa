@@ -139,4 +139,57 @@ public class FuncoesCriteriaTest extends EntityManagerTest {
                 arr[0]
                         + ", size: " + arr[1]));
     }
+    
+    @Test
+    public void aplicar_Funcao_Nativas() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object[]> criteriaQuery = criteriaBuilder.createQuery(Object[].class);
+        Root<Pedido> root = criteriaQuery.from(Pedido.class);
+
+        criteriaQuery.multiselect(
+                root.get(Pedido_.id),
+                criteriaBuilder.function("dayname", String.class, root.get(Pedido_.DATA_CONCLUSAO_PEDIDO))
+        );
+
+        criteriaQuery.where(criteriaBuilder.isTrue(
+                criteriaBuilder.function(
+                        "acima_media_faturamento", Boolean.class, root.get(Pedido_.TOTAL))));
+
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(criteriaQuery);
+
+        List<Object[]> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        lista.forEach(arr -> System.out.println(
+                arr[0] + ", dayname: " + arr[1]));
+    }
+
+
+    @Test
+    public void aplicar_Funcao_Agregacao() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object[]> criteriaQuery = criteriaBuilder.createQuery(Object[].class);
+        Root<Pedido> root = criteriaQuery.from(Pedido.class);
+
+        criteriaQuery.multiselect(
+                criteriaBuilder.count(root.get(Pedido_.id)),
+                criteriaBuilder.avg(root.get(Pedido_.TOTAL)),
+                criteriaBuilder.sum(root.get(Pedido_.TOTAL)),
+                criteriaBuilder.min(root.get(Pedido_.TOTAL)),
+                criteriaBuilder.max(root.get(Pedido_.TOTAL))
+        );
+
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(criteriaQuery);
+
+        List<Object[]> lista = typedQuery.getResultList();
+        Assertions.assertFalse(lista.isEmpty());
+
+        lista.forEach(arr -> System.out.println(
+                "count: " + arr[0]
+                        + ", avg: " + arr[1]
+                        + ", sum: " + arr[2]
+                        + ", min: " + arr[3]
+                        + ", max: " + arr[4]));
+    }
+
 }
