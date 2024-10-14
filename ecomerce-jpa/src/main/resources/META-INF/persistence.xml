@@ -9,6 +9,9 @@
                       value="jdbc:mysql://localhost/ecommerce?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=UTC" />
             <property name="jakarta.persistence.jdbc.user" value="root" />
 
+            <mapping-file>META-INF/consultas/categorias.xml</mapping-file>
+            <mapping-file>META-INF/consultas/Pedido.xml</mapping-file>
+          
             <property name="jakarta.persistence.jdbc.password" value="RootAdmin" />
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
