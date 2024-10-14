@@ -77,4 +77,52 @@ public class consultasNativasTest extends EntityManagerTest {
                         ((ItemPedido) arr[0]).getId().getPedidoId(),
                         ((Produto) arr[1]).getId(), ((Produto) arr[1]).getNome())));
     }
+      @Test
+    public void Teste_Usar_FiltResult() {
+        String sql = "select * from ecm_produto";
+        Query query = entityManager.createNativeQuery(sql, "ecm_produto.Produto");
+
+        List<Produto> lista = query.getResultList();
+        lista.stream().forEach(obj -> System.out.println(
+                String.format("Produto => ID: %s, Nome: %s", obj.getId(), obj.getNome())));
+
+    }
+
+    @Test
+    public void Teste_Usar_ColumResultDTO() {
+        String sql = "select * from ecm_produto";
+        Query query = entityManager.createNativeQuery(sql, "ecm_produto.ProdutoDTO");
+
+        List<ProdutoDTO> lista = query.getResultList();
+        lista.stream().forEach(obj -> System.out.println(
+                String.format("ProdutoDTO => ID: %s, Nome: %s", obj.getId(), obj.getNome())));
+
+    }
+
+    @Test
+    public void Teste_Usar_NamedNativeQuery() {
+        Query query = entityManager.createNamedQuery("produto_loja.listar");
+
+        List<Produto> lista = query.getResultList();
+        lista.stream().forEach(obj -> System.out.println(
+                String.format("Produto => ID: %s, Nome: %s", obj.getId(), obj.getNome())));
+    }
+
+    @Test
+    public void Teste_Usar_NamedNativeQuery02() {
+        Query query = entityManager.createNamedQuery("ecm_produto.listar");
+
+        List<Produto> lista = query.getResultList();
+        lista.stream().forEach(obj -> System.out.println(
+                String.format("Produto => ID: %s, Nome: %s", obj.getId(), obj.getNome())));
+    }
+
+    @Test
+    public void Teste_Usar_XML() {
+        Query query = entityManager.createNamedQuery("ecm_categoria.listar");
+
+        List<Categoria> lista = query.getResultList();
+        lista.stream().forEach(obj -> System.out.println(
+                String.format("Produto => ID: %s, Nome: %s", obj.getId(), obj.getNome())));
+    }
 }
