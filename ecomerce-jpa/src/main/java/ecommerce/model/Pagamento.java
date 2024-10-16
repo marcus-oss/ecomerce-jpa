@@ -13,12 +13,13 @@ import lombok.Setter;
 public abstract class Pagamento extends EntidadeBaseInteger {
 
     @MapsId
+    @NotNull
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id",  nullable = false, foreignKey = @ForeignKey(name = "fk_pagamaento_pedido"))
     private Pedido pedido;
 
     
-    @Column(length = 30, nullable = false)
+    @NotNull
     @Enumerated(EnumType.STRING)
     private StatusPagamento status;
 }
