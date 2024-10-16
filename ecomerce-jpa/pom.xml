@@ -49,6 +49,13 @@
             <scope>provided</scope>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-hikaricp</artifactId>
+            <version>6.2.5.Final</version>
+        </dependency>
+             
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
