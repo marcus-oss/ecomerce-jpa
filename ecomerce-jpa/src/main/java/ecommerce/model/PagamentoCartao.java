@@ -14,6 +14,7 @@ import lombok.Setter;
 public class PagamentoCartao extends Pagamento {
 
 
+    @NotEmpty
     @Column(name = "numero_cartao", length = 50)
     private String numerocartao;
 }
