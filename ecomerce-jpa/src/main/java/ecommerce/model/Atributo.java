@@ -12,8 +12,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Embeddable
 public class Atributo {
+
+    @NotBlank
+    @Column(length = 100, nullable = false)
     private String nome;
 
+    @NotBlank
     private String valor;
-
 }
