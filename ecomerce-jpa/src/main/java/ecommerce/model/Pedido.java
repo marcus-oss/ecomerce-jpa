@@ -14,43 +14,49 @@ import java.time.LocalDateTime;
 @EntityListeners({GerarNotaFiscalListener.class, GenericoListener.class})
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "pedido")
-public class Pedido {
+public class Pedido  extends EntidadeBaseInteger {
 
-    @EqualsAndHashCode.Include
-    @Id
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id", nullable = false, foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
     private Cliente cliente;
 
-    // @Column(name = "data_pedido")
-    // private LocalDateTime dataPedido;
 
-    @Column(name = "data_pedido",updatable = false)
+    @PastOrPresent
+    @Column(name = "data_pedido", updatable = false)
     private LocalDateTime data_Ultimo_Pedido;
 
-    
-    @Column(name = "data_conclusao_pedido",insertable = false)
+
+    @PastOrPresent
+    @Column(name = "data_conclusao_pedido", insertable = false)
     private LocalDateTime dataConclusaoPedido;
 
     @OneToOne(mappedBy = "pedido")
     private NotaFiscal notaFiscal;
 
+    @NotNull
+    @Column(nullable = false)
     private BigDecimal Total;
 
+
+    @NotNull
+    @Column(length = 30, nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
-    @OneToOne(mappedBy = "pedido")
-    private Pagamento pagamento;
-    
     @Embedded
     private EnderecoEntregaPedido entregaPedido;
 
-      @PrePersist
+
+    @NotEmpty
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
+
+
+    @OneToOne(mappedBy = "pedido")
+    private Pagamento pagamento;
+
+    @PrePersist
     public void aoPersistir() {
         dataConclusaoPedido = LocalDateTime.now();
         calcularTotal();
