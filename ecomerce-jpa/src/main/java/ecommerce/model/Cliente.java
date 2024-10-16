@@ -12,23 +12,33 @@ import java.util.Map;
 @Entity
 @Getter
 @Setter
+@NamedStoredProcedureQuery(name = "compraram_acima_media", procedureName = "compraram_acima_media",
+        parameters = {
+
+                @StoredProcedureParameter(name = "ano", type = Integer.class, mode = ParameterMode.IN)
+        },
+        resultClasses = Cliente.class
+)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @SecondaryTable(name = "cliente_detalhe", pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"), foreignKey = @ForeignKey(name = "fk_cliente_detalhe_cliente"))
 @Table(name = "cliente", uniqueConstraints = {@UniqueConstraint(name = "unq_cpf", columnNames = {"cpf"})},
         indexes = {@Index(name = "idx_nome", columnList = "nome")})
-public class Cliente {
+public class Cliente extends EntidadeBaseInteger {
 
-    @EqualsAndHashCode.Include
-    @Id
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+   
     @Transient
     private String primeironome;
 
+    @NotBlank
+    @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")
+    @Column(length = 14, nullable = false)
+    private String cpf;
+
+    @NotBlank
+    @Column(length = 100, nullable = false)
     private String nome;
 
+    @NotNull
     @Column(table = "cliente_detalhe")
     @Enumerated(EnumType.STRING)
     private SexoCliente sexo;
@@ -56,6 +66,7 @@ public class Cliente {
 
             }
         }
+
     }
 }
 
