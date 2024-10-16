@@ -55,17 +55,22 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
-    @Column(name = "data_criacao", updatable = false)
+    @PastOrPresent
+    @NotNull
+    @Column(name = "data_criacao", updatable = false, nullable = false)
     private LocalDateTime dataCriacao;
 
+    @PastOrPresent
     @Column(name = "data_ultima_atualizacao", insertable = false)
     private LocalDateTime dataUltimaAtualizacao;
 
- @Column(length = 100, nullable = false)
+
+    @NotBlank
+    @Column(length = 100, nullable = false)
     private String nome;
 
- @Column(precision = 19, scale = 2)
+    @Positive
+    @Column(precision = 19, scale = 2)
     private BigDecimal preco;
 
     @Lob
@@ -73,19 +78,21 @@ public class Produto {
     private byte[] foto;
 
     @ManyToMany
-    @JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    @JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_produto_categorias")))
     private List<Categoria> categorias;
 
     @OneToOne(mappedBy = "produto")
     private Estoque estoque;
 
     @ElementCollection
-    @CollectionTable(name = "produto_tag", joinColumns = @JoinColumn(name = "produto_id"))
+    @CollectionTable(name = "produto_tag", joinColumns = @JoinColumn(name = "produto_id", nullable = false, foreignKey = @ForeignKey(name = "fk_produto_tag")))
     @Column(name = "tag")
     private List<String> tags;
 
     @ElementCollection
-    @CollectionTable(name = "produto_atributo", joinColumns = @JoinColumn(name = "produto_id"))
+    @CollectionTable(name = "produto_atributo", joinColumns = @JoinColumn(name = "produto_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_produto_atributo_atributo")))
     private List<Atributo> atributos;
 }
 
