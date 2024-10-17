@@ -90,6 +90,13 @@ public class Produto {
     @Column(name = "tag")
     private List<String> tags;
 
+   @Convert(converter = BooleanToSimNaoConverter.class)
+    @NotNull
+    @Column(length = 3, nullable = false)
+    private Boolean ativo = Boolean.FALSE;
+
+
+ 
     @ElementCollection
     @CollectionTable(name = "produto_atributo", joinColumns = @JoinColumn(name = "produto_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_produto_atributo_atributo")))
