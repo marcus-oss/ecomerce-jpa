@@ -1,6 +1,7 @@
-insert into Produto (id,nome,preco,data_criacao) values (1,"Kindle", 600.0, date_sub(sysdate(),interval 1 day));
-insert into Produto (id, nome, preco,data_criacao) values (3, "Câmera GoPro Hero 7", 1400.0,date_sub(sysdate(),interval 1 day));
-
+insert into produto (id, nome, preco, data_criacao, ativo) values (1, 'Kindle', 799.0, date_sub(sysdate(), interval 1 day), 'SIM');
+insert into produto (id, nome, preco, data_criacao, ativo) values (3, 'Câmera GoPro Hero 7', 1500.0, date_sub(sysdate(), interval 1 day), 'SIM');
+insert into produto (id, nome, preco, data_criacao, ativo) values (4, 'Câmera Canon 80D', 3500.0, sysdate(), 'SIM');
+insert into produto (id, nome, preco, data_criacao, ativo) values (5, 'Microfone de Lapela', 50.0, sysdate(), 'NAO');
 
 insert into Cliente (id,nome,cpf) values  (1,'Matheus','0001');
 insert into Cliente (id,nome,cpf) values (2,'Fernanda','112');
