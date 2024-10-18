@@ -12,6 +12,29 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @EntityListeners({GerarNotaFiscalListener.class, GenericoListener.class})
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+                name = "Pedido.dadosEssenciais",
+                attributeNodes = {
+                        @NamedAttributeNode("dataConclusaoPedido"),
+                        @NamedAttributeNode("status"),
+                        @NamedAttributeNode("Total"),
+                        @NamedAttributeNode(
+                                value = "cliente",
+                                subgraph = "cli"
+                        )
+                },
+                subgraphs = {
+                        @NamedSubgraph(name = "cli",
+                                attributeNodes = {
+                                        @NamedAttributeNode("nome"),
+                                        @NamedAttributeNode("cpf")
+                                }
+                        )
+                }
+        )
+})
+
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "pedido")
 public class Pedido  extends EntidadeBaseInteger {
