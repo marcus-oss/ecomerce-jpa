@@ -23,7 +23,10 @@ public class NotaFiscal {
     @Id
     private Integer id;
 
-
+    
+    @Version
+    private Integer versao;
+    
     @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
