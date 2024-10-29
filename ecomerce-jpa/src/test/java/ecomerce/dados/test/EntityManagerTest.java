@@ -8,24 +8,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-public class EntityManagerTest {
+public class EntityManagerTest extends EntityManagerFactoryTest {
 
-    protected static EntityManagerFactory entityManagerFactory;
-
-
+  
     protected EntityManager entityManager;
 
-    @BeforeAll
-    public static void setUpBeforeClass() {
-
-        entityManagerFactory = Persistence.createEntityManagerFactory("Ecommerce-PU");
-    }
-
-    @AfterAll
-    public static void tearDowAfterClass() {
-        entityManagerFactory.close();
-
-    }
 
     @BeforeEach
     public void setUp() {
@@ -33,10 +20,9 @@ public class EntityManagerTest {
     }
 
     @AfterEach
-    public void tearDow() {
+    public void tearDown() {
         entityManager.close();
-
-
     }
+
 
 }
