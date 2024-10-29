@@ -76,6 +76,11 @@
             <version>2.3.1</version>
         </dependency>
 
+         <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>4.0.2</version>
+        </dependency>
 
     </dependencies>
 
