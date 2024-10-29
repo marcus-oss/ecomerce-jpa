@@ -43,6 +43,14 @@
             <property name="jakarta.persistence.sql-load-script-source"
                       value="META-INF/banco-de-dados/dados-iniciais.sql"/>
 
+          
+            <property name="hibernate.multiTenancy" value="SCHEMA" />
+            <property name="hibernate.tenant_identifier_resolver"
+                      value="ecommerce.hibernate.EcmCurrentTenantIdentifierResolver"/>
+            <property name="hibernate.multi_tenant_connection_provider"
+                      value="ecommerce.hibernate.EcmSchemaMultiTenantConnectionProvider"/>
+
+          
 
             <property name="jakarta.persistence.schema-generation.create-script-source"
                       value="META-INF/banco-de-dados/script-criacao.sql"/>
